@@ -1,0 +1,6 @@
+{
+  "description": "Persistent integrated shells backed by shpool on Linux and Remote-SSH.",
+  "restore": "Shpool Persistent: Restore Terminals",
+  "path": "Optional external shpool override (exact bundled version). Empty uses the bundled, checksum-verified runtime.",
+  "socket": "Optional absolute socket override. Bundled mode defaults to a private versioned daemon; existing sessions retain their backend."
+}

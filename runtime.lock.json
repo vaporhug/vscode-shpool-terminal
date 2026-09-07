@@ -1,0 +1,13 @@
+{
+  "version": "0.11.4",
+  "source": "https://github.com/shell-pool/shpool",
+  "commit": "3a1020c74d1ac8eb191270922d834aa452cac816",
+  "targets": {
+    "linux-x64": {
+      "triple": "x86_64-unknown-linux-musl",
+      "url": "https://github.com/shell-pool/shpool/releases/download/v0.11.4/shpool-x86_64-unknown-linux-musl.tar.gz",
+      "archiveSha256": "6d16820599999e2cf42e3569c8a651028049b1f4d9c49088c6d225ca6179fda4",
+      "binarySha256": "fbc699a77c63b53e803d4c13f0353e3f710917d5a234a39720fc1f6664a2884e"
+    }
+  }
+}

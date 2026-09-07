@@ -1,0 +1,46 @@
+name: Check and package
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux-x64:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: sudo apt-get update && sudo apt-get install -y zsh xvfb libasound2t64 libgbm1
+      - run: npm ci
+      - run: npm run runtime:fetch
+      - run: npm run check
+      - run: SHPOOL_TEST_BINARY="$PWD/vendor/linux-x64/shpool" npm run test:shpool
+      - run: npm run package
+      - name: Fetch verified official VS Code Desktop
+        run: |
+          curl --fail --location --retry 3 'https://update.code.visualstudio.com/1.121.0/linux-x64/stable' --output /tmp/vscode.tar.gz
+          echo '8cf24cc41441453e11e8fe1ae9e58d32970e23dced399835c4b0904263d66820  /tmp/vscode.tar.gz' | sha256sum --check
+          tar -xzf /tmp/vscode.tar.gz -C /tmp
+      - name: Test installed VSIX in isolated Desktop
+        run: VSCODE_EXECUTABLE=/tmp/VSCode-linux-x64/code VSCODE_TEST_VSIX="$PWD/artifacts/vscode-shpool-terminal-0.2.0-linux-x64.vsix" xvfb-run -a npm run test:vscode
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: vscode-shpool-terminal-linux-x64
+          path: |
+            artifacts/*.vsix
+            artifacts/*.sha256
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: failure()
+        with:
+          name: isolated-desktop-diagnostics
+          path: |
+            /tmp/vscode-shpool-vscode-*/events.jsonl
+            /tmp/vscode-shpool-vscode-*/driver.log
+          if-no-files-found: ignore

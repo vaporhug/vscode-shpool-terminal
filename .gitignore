@@ -1,0 +1,6 @@
+node_modules/
+out/
+artifacts/
+.vscode-test/
+vendor/
+*.tmp

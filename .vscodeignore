@@ -1,0 +1,12 @@
+**/*
+!package.json
+!package.nls*.json
+!README.md
+!README.zh-CN.md
+!LICENSE
+!out/*.js
+!docs/*.md
+!runtime.lock.json
+!vendor/linux-x64/shpool
+!third_party/**
+!CHANGELOG.md

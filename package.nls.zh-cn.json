@@ -1,0 +1,6 @@
+{
+  "description": "在 Linux 和 Remote-SSH 中使用 shpool 持久化原生集成终端。",
+  "restore": "Shpool Persistent: 恢复终端",
+  "path": "可选的外部 shpool 路径（版本需与内置版本一致）。留空使用经过校验的内置运行时。",
+  "socket": "可选的 socket 绝对路径。内置模式默认使用独立的版本化 daemon，已有 session 保留原后端。"
+}

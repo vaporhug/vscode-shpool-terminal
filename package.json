@@ -1,0 +1,90 @@
+{
+  "name": "vscode-shpool-terminal",
+  "displayName": "Shpool Persistent Terminal",
+  "description": "%description%",
+  "version": "0.2.0",
+  "publisher": "vaporhug",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.121.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onTerminalProfile:shpool.persistent"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false
+    },
+    "virtualWorkspaces": {
+      "supported": false
+    }
+  },
+  "contributes": {
+    "terminal": {
+      "profiles": [
+        {
+          "id": "shpool.persistent",
+          "title": "Shpool Persistent",
+          "icon": "terminal"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "shpool.restore",
+        "title": "%restore%"
+      }
+    ],
+    "configuration": {
+      "title": "Shpool Persistent",
+      "properties": {
+        "shpool.path": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "%path%"
+        },
+        "shpool.socketPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "%socket%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "test": "npm run compile && node scripts/test.cjs",
+    "test:shpool": "npm run compile && python3 tests/shpool-integration.py",
+    "test:vscode": "npm run compile && node scripts/test-vscode.cjs",
+    "check": "npm test",
+    "vscode:prepublish": "npm run compile",
+    "package": "node scripts/package.cjs",
+    "runtime:fetch": "node scripts/fetch-runtime.cjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "1.93.0",
+    "@vscode/vsce": "3.6.2",
+    "typescript": "^5.9.3"
+  },
+  "preview": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaporhug/vscode-shpool-terminal.git"
+  },
+  "homepage": "https://github.com/vaporhug/vscode-shpool-terminal#readme",
+  "bugs": {
+    "url": "https://github.com/vaporhug/vscode-shpool-terminal/issues"
+  },
+  "packageManager": "npm@11.6.2"
+}
