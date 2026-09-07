@@ -24,6 +24,8 @@ Linux x64 VSIX 包含官方静态 musl 构建。`runtime.lock.json` 固定版本
 
 扩展采用 MIT 许可证，shpool 采用 Apache-2.0；附带许可证位于 `third_party/`。首个预览版仅支持 Linux x64，未包含 arm64 或非 Linux 后端。
 
+早期使用不同 extension ID 的实验版属于独立安装，其 metadata 不会自动导入。请先使用原扩展结束并关闭旧 persistent tabs，再卸载旧扩展；安装此预览版不会终止那些会话。
+
 ## 配置
 
 | 配置 | 默认行为 |

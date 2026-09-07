@@ -14,6 +14,8 @@ For `ResearchClawBench`, terminals and shpool sessions are named `ResearchClawBe
 
 The extension runs only on Linux (`extensionKind: ["workspace"]`). Local Linux is also supported for testing. It has no WebView, multiplexing UI, custom PTY renderer, SSH manager, terminal commands injected with `sendText`, or runtime npm dependencies.
 
+Earlier experimental builds with a different extension ID are separate installations. Their metadata is not automatically imported. Finish and close their persistent tabs with the original extension before uninstalling it; installing this preview does not terminate those sessions.
+
 ## Configuration
 
 | Setting | Default | Meaning |
